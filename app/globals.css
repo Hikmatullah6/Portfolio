@@ -117,13 +117,22 @@ html {
 .sec-text::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+  top: -5%;
+  left: -10%;
+  height: 200%;
+  width: 200%;
   background-color: #0a0a0a;
   border-left: 2px solid #4070f4;
   animation: animate 5s steps(12) infinite;
+}
+
+@media (max-width: 700px) {
+  .sec-text::before {
+    width: 200%;
+    height: 200%;
+    top: -10%;
+    left: -10%;
+  }
 }
 
 /* Keyframes */
@@ -135,10 +144,10 @@ html {
   }
 
   85% {
-    left: 0%
+    left: -10%
   }
 
   100% {
-    left: 0%;
+    left: -10%;
   }
 }

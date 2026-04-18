@@ -33,9 +33,10 @@ export const techCategories = [
     {
         label: 'Tools',
         items: [
-            { name: 'Supabase', icon: '/icons/supabase.svg' },
-            { name: 'MongoDB',  icon: '/icons/mongodb.svg' },
-            { name: 'PostgreSQL',    icon: '/icons/postgresql.svg' },
+            { name: 'Supabase',   icon: '/icons/supabase.svg' },
+            { name: 'MongoDB',    icon: '/icons/mongodb.svg' },
+            { name: 'PostgreSQL', icon: '/icons/postgresql.svg' },
+            { name: 'Docker',     icon: '/icons/docker.svg' },
         ],
     },
     {

@@ -3,71 +3,85 @@
 import { useState } from "react";
 import Link from "next/link";
 
+const navLinks = [
+    { href: "#experience", label: "Work Experience" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+];
+
 export default function Navbar() {
     const [open, setOpen] = useState(false);
 
     return (
-        <header className="sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-lg border-b border-white/5">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex justify-between items-center">
+        <header className="sticky top-0 z-50 bg-bg/80 backdrop-blur-xl border-b border-white/5">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex justify-between items-center">
 
                 {/* Logo */}
                 <Link
                     href="/"
-                    className="text-3xl font-bold hover:text-blue-500 transition-colors"
+                    className="text-2xl font-bold tracking-tight hover:text-accent transition-colors"
                 >
-                    Hussain
+                    Hussain<span className="text-accent">.</span>
                 </Link>
 
                 {/* Desktop Nav */}
-                <nav className="hidden md:flex gap-10">
-                    <Link href="#experience" className="hover:text-blue-500 transition-colors font-semibold">
-                        Work Experience
-                    </Link>
-                    <Link href="#projects" className="hover:text-blue-500 transition-colors font-semibold">
-                        Projects
-                    </Link>
-                    <Link href="#contact" className="hover:text-blue-500 transition-colors font-semibold">
-                        Contact
-                    </Link>
+                <nav className="hidden md:flex items-center gap-9">
+                    {navLinks.map((item) => (
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            className="text-sm font-semibold text-gray-300 hover:text-accent transition-colors"
+                        >
+                            {item.label}
+                        </Link>
+                    ))}
+                    <a
+                        href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-semibold px-4 py-2 rounded-lg border border-accent/40 text-accent hover:bg-accent hover:text-black transition-all duration-300"
+                    >
+                        Resume
+                    </a>
                 </nav>
 
-                {/* Mobile Menu Button */}
+                {/* Mobile Menu Button (animated hamburger → X) */}
                 <button
                     onClick={() => setOpen(!open)}
-                    className="md:hidden text-white focus:outline-none"
-                    aria-label="Toggle menu"
+                    className="md:hidden relative w-7 h-7 flex flex-col justify-center items-center gap-1.5 focus:outline-none"
+                    aria-label={open ? "Close menu" : "Open menu"}
+                    aria-expanded={open}
+                    aria-controls="mobile-menu"
                 >
-                    <span className="block w-6 h-0.5 bg-white mb-1"></span>
-                    <span className="block w-6 h-0.5 bg-white mb-1"></span>
-                    <span className="block w-6 h-0.5 bg-white"></span>
+                    <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""}`} />
+                    <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "opacity-0" : ""}`} />
+                    <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "-rotate-45 -translate-y-2" : ""}`} />
                 </button>
             </div>
 
             {/* Mobile Menu */}
             {open && (
-                <div className="md:hidden px-6 pb-6">
-                    <nav className="flex flex-col gap-6">
-                        <Link
-                            href="#experience"
+                <div id="mobile-menu" className="md:hidden px-6 pb-6 border-t border-white/5">
+                    <nav className="flex flex-col gap-5 pt-5">
+                        {navLinks.map((item) => (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                onClick={() => setOpen(false)}
+                                className="font-semibold text-gray-300 hover:text-accent transition-colors"
+                            >
+                                {item.label}
+                            </Link>
+                        ))}
+                        <a
+                            href="/resume.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             onClick={() => setOpen(false)}
-                            className="hover:text-blue-500 transition-colors font-semibold"
+                            className="font-semibold text-center px-4 py-2.5 rounded-lg border border-accent/40 text-accent hover:bg-accent hover:text-black transition-all"
                         >
-                            Work Experience
-                        </Link>
-                        <Link
-                            href="#projects"
-                            onClick={() => setOpen(false)}
-                            className="hover:text-blue-500 transition-colors font-semibold"
-                        >
-                            Projects
-                        </Link>
-                        <Link
-                            href="#contact"
-                            onClick={() => setOpen(false)}
-                            className="hover:text-blue-500 transition-colors font-semibold"
-                        >
-                            Contact
-                        </Link>
+                            Resume
+                        </a>
                     </nav>
                 </div>
             )}

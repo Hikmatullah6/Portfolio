@@ -2,7 +2,7 @@
 
 import LinkedInIcon from "./icons/LinkedIn";
 import GithubIcon from "./icons/Github";
-import Typewriter from "./Typewriter";
+// import Typewriter from "./Typewriter"; // Typewriter disabled for now
 
 export default function Hero() {
     return (
@@ -35,7 +35,9 @@ export default function Hero() {
                             Hussain!
                         </span>
                         <br />
-                        <Typewriter />
+                        {/* Typewriter disabled for now — static title instead */}
+                        {/* <Typewriter /> */}
+                        <span>Software Engineer</span>
                     </h1>
 
                     <p className="text-gray-400 text-2xl lg:text-3xl">

@@ -70,7 +70,10 @@ html {
   }
 }
 
-/* ── Typewriter (hero title) ────────────────────────────────────── */
+/* ── Typewriter (hero title) — DISABLED for now ─────────────────────
+   The hero shows a static "Software Engineer" title. Re-enable by
+   uncommenting this block along with components/Typewriter.tsx. */
+/*
 .typewriter {
   position: relative;
   display: inline-block;
@@ -81,8 +84,6 @@ html {
   position: relative;
 }
 
-/* Cursor / wipe animation — colors reference tokens so they follow
-   the theme instead of being hardcoded to the background. */
 .sec-text::before {
   content: "";
   position: absolute;
@@ -109,3 +110,4 @@ html {
   85%      { left: -10%; }
   100%     { left: -10%; }
 }
+*/

@@ -1,25 +1,31 @@
-"use client";
+// Typewriter animation disabled for now.
+// The Hero shows a static "Software Engineer" title instead.
+// Re-enable by uncommenting this component and its usage in components/Hero.tsx.
 
-import { useEffect, useState } from "react";
+// "use client";
 
-const titles = ["Software Engineer", "Full-Stack Developer", "Backend Developer", "Always Learning"];
+// import { useEffect, useState } from "react";
 
-export default function Typewriter() {
-    const [index, setIndex] = useState(0);
+// const titles = ["Software Engineer", "Full-Stack Developer", "Backend Developer", "Always Learning"];
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIndex((prev) => (prev + 1) % titles.length);
-        }, 5000);
+// export default function Typewriter() {
+//     const [index, setIndex] = useState(0);
 
-        return () => clearInterval(interval);
-    }, []);
+//     useEffect(() => {
+//         const interval = setInterval(() => {
+//             setIndex((prev) => (prev + 1) % titles.length);
+//         }, 5000);
 
-    return (
-        <div className="typewriter">
-            <span className="sec-text">
-                {titles[index]}
-            </span>
-        </div>
-    );
-}
+//         return () => clearInterval(interval);
+//     }, []);
+
+//     return (
+//         <div className="typewriter">
+//             <span className="sec-text">
+//                 {titles[index]}
+//             </span>
+//         </div>
+//     );
+// }
+
+export {};

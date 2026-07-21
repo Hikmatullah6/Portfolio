@@ -1,58 +1,38 @@
 @import "tailwindcss";
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── Design tokens ───────────────────────────────────────────────
+   Centralized here so a future palette change is a one-line edit.
+   Dark base kept; accent is warm amber/gold. Consumed via Tailwind
+   utilities like text-accent / bg-accent / border-accent. */
+@theme {
+  --color-bg: #0a0a0a;           /* near-black base */
+  --color-surface: #141414;      /* elevated cards */
+  --color-accent: #f59e0b;       /* amber-500 primary */
+  --color-accent-light: #fbbf24; /* amber-400 */
+  --color-accent-dark: #d97706;  /* amber-600, for gradients */
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
 
 html {
   scroll-behavior: smooth;
+  /* Offset anchor jumps so section headings clear the sticky navbar */
+  scroll-padding-top: 6rem;
 }
 
+/* Visible, on-brand keyboard focus indicator */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Wave (hero emoji) ──────────────────────────────────────────── */
 @keyframes wave {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  20% {
-    transform: rotate(14deg);
-  }
-
-  40% {
-    transform: rotate(-8deg);
-  }
-
-  60% {
-    transform: rotate(14deg);
-  }
-
-  80% {
-    transform: rotate(-4deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(14deg); }
+  40%  { transform: rotate(-8deg); }
+  60%  { transform: rotate(14deg); }
+  80%  { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .animation-wave {
@@ -60,60 +40,49 @@ html {
   transform-origin: 70% 70%;
 }
 
-/* @keyframes rotate {
-
-  0%,
-  100% {
-    top: 0;
+/* ── Scroll-reveal (used by components/Reveal.tsx) ──────────────── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
   }
-
-  20% {
-    top: 0;
-  }
-
-  25% {
-    top: -120%;
-  }
-
-  45% {
-    top: -235%;
-  }
-
-  50% {
-    top: -235%;
-  }
-
-  70% {
-    top: -350%;
-  }
-
-  75% {
-    top: -470%;
-  }
-
-  95% {
-    top: -470%;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.rotate-animation {
-  animation: rotate 5s ease infinite;
-} */
+.reveal {
+  opacity: 0;
+}
 
-/* Container for the animated text */
+.reveal.is-visible {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+}
+
+/* ── Typewriter (hero title) ────────────────────────────────────── */
 .typewriter {
   position: relative;
   display: inline-block;
   overflow: hidden;
 }
 
-/* The animated text itself */
 .sec-text {
   position: relative;
-  /* color: #4070f4; */
 }
 
-/* Cursor / wipe animation */
+/* Cursor / wipe animation — colors reference tokens so they follow
+   the theme instead of being hardcoded to the background. */
 .sec-text::before {
   content: "";
   position: absolute;
@@ -121,8 +90,8 @@ html {
   left: -10%;
   height: 200%;
   width: 200%;
-  background-color: #0a0a0a;
-  border-left: 2px solid #4070f4;
+  background-color: var(--color-bg);
+  border-left: 2px solid var(--color-accent);
   animation: animate 5s steps(12) infinite;
 }
 
@@ -135,19 +104,8 @@ html {
   }
 }
 
-/* Keyframes */
 @keyframes animate {
-
-  40%,
-  60% {
-    left: 100%;
-  }
-
-  85% {
-    left: -10%
-  }
-
-  100% {
-    left: -10%;
-  }
+  40%, 60% { left: 100%; }
+  85%      { left: -10%; }
+  100%     { left: -10%; }
 }

@@ -16,18 +16,22 @@ export default function TechStack() {
 
     return (
         <section className="max-w-7xl mx-auto py-20">
-            <h2 className="lg:text-5xl text-4xl text-center lg:text-left font-bold mb-12">TECH STACK</h2>
+            <div className="mb-12 text-center lg:text-left">
+                <span className="text-accent font-semibold tracking-widest text-sm">WHAT I WORK WITH</span>
+                <h2 className="lg:text-5xl text-4xl font-bold mt-2">Tech Stack</h2>
+            </div>
 
             <div className="space-y-4">
                 {techCategories.map((category, index) => (
-                    <div key={category.label} className="border border-white/10 rounded-xl overflow-hidden">
+                    <div key={category.label} className="border border-white/10 rounded-xl overflow-hidden bg-surface/40">
                         <button
                             onClick={() => toggle(index)}
-                            className="w-full flex items-center justify-between px-6 py-4 bg-white/[0.03] hover:bg-white/[0.06] transition-colors duration-200"
+                            aria-expanded={openStates[index]}
+                            className="w-full flex items-center justify-between px-6 py-4 bg-white/[0.02] hover:bg-white/[0.05] transition-colors duration-200"
                         >
                             <span className="text-lg font-semibold tracking-wide">{category.label}</span>
                             <svg
-                                className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${openStates[index] ? 'rotate-180' : 'rotate-0'}`}
+                                className={`w-5 h-5 text-accent transition-transform duration-300 ${openStates[index] ? 'rotate-180' : 'rotate-0'}`}
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -35,14 +39,15 @@ export default function TechStack() {
                         </button>
 
                         {openStates[index] && (
-                            <div className="px-6 py-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                            <div className="px-6 py-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
                                 {category.items.map((tech) => (
                                     <div
                                         key={tech.name}
-                                        className="bg-white/[0.03] border border-white/10 rounded-xl p-4 sm:p-6 flex flex-col items-center gap-4 hover:bg-white/[0.05] hover:border-blue-500/50 hover:-translate-y-2 transition-all duration-300"
+                                        className="bg-white/[0.03] border border-white/10 rounded-xl p-4 sm:p-6 flex flex-col items-center gap-3 hover:bg-white/[0.05] hover:border-accent/50 hover:-translate-y-2 hover:shadow-lg hover:shadow-accent/10 transition-all duration-300"
                                     >
-                                        <img src={tech.icon} alt={tech.name} className="w-12 h-12" />
-                                        <div className="hidden sm:block font-semibold">{tech.name}</div>
+                                        {/* eslint-disable-next-line @next/next/no-img-element -- SVG icons, no next/image optimization benefit */}
+                                        <img src={tech.icon} alt={`${tech.name} logo`} className="w-11 h-11 sm:w-12 sm:h-12" />
+                                        <div className="font-semibold text-sm sm:text-base text-center">{tech.name}</div>
                                     </div>
                                 ))}
                             </div>

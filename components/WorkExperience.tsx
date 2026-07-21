@@ -15,15 +15,19 @@ export default function WorkExperience() {
     };
 
     return (
-        <section id="experience" className="max-w-7xl mx-auto px-0 lg:px-0 py-20">
-            <h2 className="lg:text-5xl text-4xl text-center lg:text-left font-bold mb-12">WORK EXPERIENCE</h2>
+        <section id="experience" className="scroll-mt-24 max-w-7xl mx-auto py-20">
+            <div className="mb-12 text-center lg:text-left">
+                <span className="text-accent font-semibold tracking-widest text-sm">CAREER SO FAR</span>
+                <h2 className="lg:text-5xl text-4xl font-bold mt-2">Work Experience</h2>
+            </div>
+
             <div className="space-y-12">
                 {experiences.map((exp, index) => (
-                    <div key={index} className="border-l-2 border-blue-500/50 pl-8 relative">
-                        <div className="absolute -left-[6px] top-0 w-3 h-3 bg-blue-500 rounded-full" />
+                    <div key={index} className="border-l-2 border-accent/40 pl-8 relative">
+                        <div className="absolute -left-[7px] top-1 w-3.5 h-3.5 bg-accent rounded-full ring-4 ring-accent/20" />
                         <div className="text-gray-400 text-sm mb-2">{exp.date}</div>
-                        <h3 className="text-3xl font-bold mb-1">{exp.title}</h3>
-                        <div className="text-blue-500 text-2xl font-semibold mb-3">{exp.company}</div>
+                        <h3 className="text-2xl lg:text-3xl font-bold mb-1">{exp.title}</h3>
+                        <div className="text-accent text-xl lg:text-2xl font-semibold mb-3">{exp.company}</div>
 
                         <div className="flex flex-wrap gap-2 mb-4">
                             {exp.stack.map((tech) => (
@@ -33,11 +37,12 @@ export default function WorkExperience() {
                             ))}
                         </div>
 
-                        <p className="text-gray-400 mb-3">{exp.description}</p>
+                        <p className="text-gray-400 mb-3 leading-relaxed">{exp.description}</p>
 
                         <button
                             onClick={() => toggle(index)}
-                            className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                            aria-expanded={openStates[index]}
+                            className="flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-light transition-colors duration-200"
                         >
                             <svg
                                 className={`w-4 h-4 transition-transform duration-300 ${openStates[index] ? 'rotate-180' : 'rotate-0'}`}
@@ -51,8 +56,8 @@ export default function WorkExperience() {
                         {openStates[index] && (
                             <ul className="mt-3 space-y-2">
                                 {exp.details.map((point, i) => (
-                                    <li key={i} className="flex gap-3 text-gray-400">
-                                        <span className="text-blue-500 mt-1.5 shrink-0">▸</span>
+                                    <li key={i} className="flex gap-3 text-gray-400 leading-relaxed">
+                                        <span className="text-accent mt-1.5 shrink-0">▸</span>
                                         {point}
                                     </li>
                                 ))}
